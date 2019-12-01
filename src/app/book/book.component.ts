@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {library} from '../library';
+import {BookService} from '../book.service';
 
 @Component({
   selector: 'ngu-book',
@@ -8,16 +8,16 @@ import {library} from '../library';
   styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
-
   book;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private bookService: BookService
   ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.book = library.filter(book => book.id === params.get('bookId'))[0];
+      this.book = this.bookService.getById(params.get('bookId'));
     });
   }
 
