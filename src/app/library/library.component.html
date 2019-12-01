@@ -1,1 +1,8 @@
-<p>library works!</p>
+<div *ngFor="let book of library">
+  <h3>
+    <a [title]="book.id + ' - ' + book.title" [routerLink]="['/books', book.id]">
+      {{book.title}}
+    </a>
+  </h3>
+  <p>{{book.author}}</p>
+</div>
