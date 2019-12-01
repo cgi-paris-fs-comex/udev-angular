@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatSnackBarModule, MatToolbarModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -18,7 +20,14 @@ import {RegisterComponent} from './register/register.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    AppRoutingModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 import {BookService} from '../book.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
     private bookService: BookService
   ) {
     this.bookForm = this.formBuilder.group({
@@ -24,8 +26,17 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(data) {
-    this.bookService.add(data);
-    this.bookForm.reset();
+    if (data && (data.title && data.author)) {
+      this.bookService.add(data);
+      this.bookForm.reset();
+      this.openSnackBar('Le livre a été ajouté');
+    }
+  }
+
+  private openSnackBar(message: string) {
+    this.snackBar.open(message, 'Super!', {
+      duration: 5000,
+    });
   }
 
 }

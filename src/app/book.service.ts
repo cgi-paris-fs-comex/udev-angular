@@ -10,7 +10,6 @@ export class BookService {
   add(book) {
     const id = (this.books.length + 1).toString();
     this.books.push({id, ...book});
-    console.log(this.books);
   }
 
   getAll() {
