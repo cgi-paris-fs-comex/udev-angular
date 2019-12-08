@@ -2,11 +2,11 @@
   Retour
 </button>
 
-<div>
+<div *ngIf="book | async as b">
   <h3>
-    <a [title]="book.id + ' - ' + book.title">
-      {{book.title}}
+    <a [title]="b.id + ' - ' + b.title">
+      {{b.title}}
     </a>
   </h3>
-  <p>{{book.author}}</p>
+  <p>{{b.author}}</p>
 </div>

@@ -1,4 +1,6 @@
-export const library = [
+import {Book} from './book';
+
+export const library: Book[] = [
   {id: '1', title: 'Dune', author: 'Frank HERBERT'},
   {id: '2', title: 'Hyperion', author: 'Dan SIMMONS'},
   {id: '3', title: 'Fondation', author: 'Isaac ASIMOV'},

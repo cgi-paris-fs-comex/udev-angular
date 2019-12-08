@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
-import {BookService} from '../book.service';
+import {Book} from '../../models/book';
+import {BookRepository} from '../../services/book.repository';
 
 @Component({
   selector: 'ngu-register',
@@ -9,12 +10,12 @@ import {BookService} from '../book.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  bookForm;
+  bookForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
-    private bookService: BookService
+    private bookService: BookRepository
   ) {
     this.bookForm = this.formBuilder.group({
       title: '',
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(data) {
+  onSubmit(data: Book) {
     if (data && (data.title && data.author)) {
       this.bookService.add(data);
       this.bookForm.reset();

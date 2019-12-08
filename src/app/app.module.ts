@@ -1,3 +1,4 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatSnackBarModule, MatToolbarModule} from '@angular/material';
@@ -6,9 +7,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BookComponent} from './book/book.component';
-import {LibraryComponent} from './library/library.component';
-import {RegisterComponent} from './register/register.component';
+import {BookComponent} from './components/book/book.component';
+import {LibraryComponent} from './components/library/library.component';
+import {RegisterComponent} from './components/register/register.component';
+import {BookInMemory} from './services/book.in-memory';
+import {BookRepository} from './services/book.repository';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import {RegisterComponent} from './register/register.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -29,7 +33,9 @@ import {RegisterComponent} from './register/register.component';
     MatInputModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {provide: BookRepository, useClass: BookInMemory}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
