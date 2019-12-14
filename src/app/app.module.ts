@@ -1,4 +1,4 @@
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatSnackBarModule, MatToolbarModule} from '@angular/material';
@@ -10,8 +10,8 @@ import {AppComponent} from './app.component';
 import {BookComponent} from './components/book/book.component';
 import {LibraryComponent} from './components/library/library.component';
 import {RegisterComponent} from './components/register/register.component';
-import {BookInMemory} from './services/book.in-memory';
 import {BookRepository} from './services/book.repository';
+import {BookService} from './services/real/book.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import {BookRepository} from './services/book.repository';
     MatSnackBarModule
   ],
   providers: [
-    {provide: BookRepository, useClass: BookInMemory}
+    {provide: BookRepository, useFactory: (http: HttpClient) => new BookService(http), deps: [HttpClient]}
+    //{provide: BookRepository, useClass: BookInMemory}
   ],
   bootstrap: [AppComponent]
 })
