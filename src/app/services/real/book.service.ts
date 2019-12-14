@@ -11,8 +11,8 @@ export class BookService implements BookRepository {
 
   constructor(private http: HttpClient) { }
 
-  add(book: Book): void {
-    this.http.post<Book>(this.url, book);
+  add(book: Book): Observable<Book> {
+    return this.http.post<Book>(this.url, book);
   }
 
   all(): Observable<Book[]> {

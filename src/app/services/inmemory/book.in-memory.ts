@@ -16,12 +16,14 @@ const library: Book[] = [
 export class BookInMemory implements BookRepository {
   private library$: Subject<Book[]> = new BehaviorSubject(library);
 
-  add(book): void {
-    this.library$
+  add(book): Observable<Book> {
+    return this.library$
       .pipe(
         map(books => {
           const id: string = (books.length + 1).toString();
-          books.push({id, ...book});
+          const newBook: Book = {id, ...book};
+          books.push(newBook);
+          return newBook;
         })
       );
   }

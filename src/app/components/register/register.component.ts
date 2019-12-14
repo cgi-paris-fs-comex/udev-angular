@@ -27,11 +27,17 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(data: Book) {
-    if (data && (data.title && data.author)) {
-      this.bookService.add(data);
-      this.bookForm.reset();
-      this.openSnackBar('Le livre a été ajouté');
+    if (this.isFormComplete(data)) {
+      this.bookService.add(data)
+        .subscribe(() => {
+          this.bookForm.reset();
+          this.openSnackBar('Le livre a été ajouté');
+        });
     }
+  }
+
+  private isFormComplete(data: Book) {
+    return data && (data.title && data.author);
   }
 
   private openSnackBar(message: string) {

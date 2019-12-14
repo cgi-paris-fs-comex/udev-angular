@@ -34,8 +34,7 @@ import {BookService} from './services/real/book.service';
     MatSnackBarModule
   ],
   providers: [
-    {provide: BookRepository, useFactory: (http: HttpClient) => new BookService(http), deps: [HttpClient]}
-    //{provide: BookRepository, useClass: BookInMemory}
+    {provide: BookRepository, useFactory: (http: HttpClient) => new BookService(http), 'deps': [HttpClient]}
   ],
   bootstrap: [AppComponent]
 })
