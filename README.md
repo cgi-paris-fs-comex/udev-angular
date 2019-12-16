@@ -28,10 +28,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Services
 
-To use this application, you have to to run the backend server of [Guillaume Gallois](https://github.com/keuss).
-You can find his repository [here](https://github.com/keuss/springboot-udev).
+To use this application, you have to to run the backend server.
+You can find this repository [here](https://github.com/cgi-paris-fs-comex/udev-springboot).
 
-If you want, to run the correct version of the backend, run the version found in the `no-auth` branch ([here](https://github.com/keuss/springboot-udev/tree/no-auth))
+Make sure you run in from `no-auth` branch.
 
 If you change the port of the backend server, don't forget to change it also in the `proxy.conf.json` file.
 
